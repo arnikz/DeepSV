@@ -1,17 +1,22 @@
 import pysam
 from pysam import VariantFile
 import os
+from os.path import dirname, join, abspath
+import sys
 import re
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from K_Means_Cluster_Source.k_means import *
 from PIL import Image
 from PIL import ImageDraw
+
+sys.path.insert(0, abspath(join(dirname(__file__), '..')))
+
+from K_Means_Cluster_Source.k_means import *
 from BAM_CLASS import BAM
 from VCF_CLASS import VCF
-from FILE_CLASS import FILE
+from FILE_CLASS import File
 from Features import *
 from Init_Image import *
 from Candidate_Image import *
@@ -43,8 +48,8 @@ def main():
 	file = File()
 	vcf_path = "your file path"
 	vcf_file = file.get_vcf_file(vcf_path,'deletion')   
-		print("vcf_file is []")
-		return
+	print("vcf_file is []")
+	return
 	
 	bam_path = "your file path"
 	sam_file = file.get_sam_file(bam_path)

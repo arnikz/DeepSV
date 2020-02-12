@@ -13,26 +13,34 @@ DeepSV, an approach based on deep learning for calling long deletions from seque
 
 ## Installation
 ### Tools
-  bash Anaconda3-4.3.1-Linux-x86_64.sh <br/>
-### Jupyter Notebook
-  * pip install jupyter
-  * Configure <br/>
-    jupyter notebook --generate-config <br/>
-    Create a ciphertext password:
-    from notebook.auth import passwd
-  * Modify the default configuration file <br/>
-    c.NotebookApp.ip='*' <br/>
-	  c.NotebookApp.password = u'sha:...' <br/>
-	  c.NotebookApp.open_browser = False  <br/>
-	  c.NotebookApp.port =8888            <br/>
-	  c.NotebookApp.notebook_dir = u’/home/...’ <br/>
-  
-### Cuda & cudnn
-   Installation tutorial can be downloaded from the official website
-    
-### TensorFlow
-* pip install tensorflow-gpu
 
+```
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+bash miniconda.sh
+conda update -y conda
+conda env create -n deepsv -f environment.yaml
+conda activate deepsv
+```
+
+### Jupyter Notebook
+  * Configure
+  
+    `jupyter notebook --generate-config`
+  
+  * Create a ciphertext password:
+    
+    `from notebook.auth import passwd`
+
+  * Modify the default configuration file:
+
+```  
+c.NotebookApp.ip='*'
+c.NotebookApp.password = u'sha:...'
+c.NotebookApp.open_browser = False
+c.NotebookApp.port =8888
+c.NotebookApp.notebook_dir = u’/home/...’
+```
+  
 ### Digits
     cd ~
     git clone https://github.com/NVIDIA/DIGITS.git digits
@@ -42,17 +50,17 @@ DeepSV, an approach based on deep learning for calling long deletions from seque
     pip install -r ~/digits/requirements.txt 
     ./digits-devserver
 
-### pysam
-* pip install pysam
-
 ## Usage
 ### Data
 BAM file & VCF file <br/>
 First provide the bam files and vcf files for program<br/>
+
 ### Generation Candidates
-Run Generate_Deletion_Image.py and Generate_Non_Deletion_Image.py in the custom path <br/> 
-* python Generate_Deletion_Image.py --del_length <br/>
-* python Generate_Non_Deletion_Image.py --del_length <br/>
+
+```
+python Deletion_Image_Source/Generate_Deletion_Image.py --del_length`
+python Non_Deletion_Image_Source/Generate_Non_Deletion_Image.py --del_length
+```
 
 ### Geerationg Images Path
 Generate the path of all pictures for training the network
